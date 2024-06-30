@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ItemFragment">
+
+  <Spinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/item2"
+      android:entries="@array/food_item"
+      android:layout_marginTop="70dp"
+      android:layout_marginStart="130dp"
+      />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/item3"
+        android:entries="@array/food_item"
+        android:layout_marginTop="140dp"
+        android:layout_marginStart="130dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAddress"
+        android:src="@drawable/baseline_add_circle_24"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="290dp"/>
+</RelativeLayout>

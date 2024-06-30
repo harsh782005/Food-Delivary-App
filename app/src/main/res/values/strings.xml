@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Food Delivary App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order">Order</string>
+    <string name="qnt">Qnty</string>
+    <string name="ordername">Order Name</string>
+    <string name="Item">Item</string>
+    <string name="Bill">Bill</string>
+    <string name="city">Enter City</string>
+    <string name="add">Add</string>
+    <string-array name="food_item">
+        <item name="samosa">Samosa</item>
+        <item name="cheese">Cheese</item>
+        <item name="burger">Burger</item>
+        <item name="pizza">Pizza</item>
+    </string-array>
+</resources>
