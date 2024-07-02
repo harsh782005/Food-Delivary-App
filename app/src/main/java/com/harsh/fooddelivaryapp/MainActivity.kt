@@ -14,7 +14,8 @@ import com.harsh.fooddelivaryapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     var binding: ActivityMainBinding? = null
     var navController: NavController? = null
-    var appBarConfiguration : AppBarConfiguration ?= null
+    var studentarray = arrayListOf<StudentAdapterDataClass>(StudentAdapterDataClass("Pizza", 1))
+    var appBarConfiguration: AppBarConfiguration? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -44,8 +45,9 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.title = "Main Menu"
                     binding?.bottomNav?.menu?.findItem(R.id.item)?.isChecked = true
                 }
+
                 R.id.billFragment -> {
-                    supportActionBar?.title ="Bill Section"
+                    supportActionBar?.title = "Bill Section"
                     binding?.bottomNav?.menu?.findItem(R.id.bill)?.isChecked = true
                 }
 
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return super.onSupportNavigateUp() || navController!!.popBackStack()
     }

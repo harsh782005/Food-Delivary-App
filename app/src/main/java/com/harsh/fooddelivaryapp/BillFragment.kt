@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.harsh.fooddelivaryapp.databinding.FragmentBillBinding
 
@@ -22,15 +24,18 @@ class BillFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-var binding : FragmentBillBinding ?= null
-    var mainActivity : MainActivity ?= null
-    var number =0;
+    var binding: FragmentBillBinding? = null
+    var mainActivity: MainActivity? = null
+    var number = 1
+    private var order = ""
+    private lateinit var arrayAdapter: ArrayAdapter<StudentAdapterDataClass>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
             mainActivity = activity as MainActivity
+            order = it.getString("order") ?: ""
         }
     }
 
@@ -38,26 +43,63 @@ var binding : FragmentBillBinding ?= null
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         binding = FragmentBillBinding.inflate(layoutInflater)
+        binding = FragmentBillBinding.inflate(layoutInflater)
         return binding?.root
         // Inflate the layout for this fragment
-      //  return inflater.inflate(R.layout.fragment_bill, container, false)
+        //  return inflater.inflate(R.layout.fragment_bill, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arrayAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_expandable_list_item_1,
+            mainActivity?.studentarray ?: arrayListOf()
+        )
+        binding?.item1?.adapter = arrayAdapter
+        val selectedItem = binding!!.item1.selectedItem as StudentAdapterDataClass
+        binding?.item1?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    var selectedItem = binding?.item1?.selectedItem as StudentAdapterDataClass
+                    binding?.etQnt?.setText(selectedItem.etQnty.toString())
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
+
+
         binding?.btnAdd?.setOnClickListener {
-            number+= 1
-            binding?.etQnt?.setText(number.toString())
+            if (binding?.etQnt?.text?.toString()?.trim()!! >= selectedItem.etQnty.toString()
+            ) {
+                binding?.etQnt?.error = "First Choose the Item "
+            } else {
+                number += 1
+                binding?.etQnt?.setText(number.toString())
+            }
         }
         binding?.btnSub?.setOnClickListener {
-           if (binding?.etQnt?.text?.toString()?.trim().isNullOrEmpty()){
-             binding?.etQnt?.error = "First Choose the Item "
-           }
-            else{
-               number-= 1
-               binding?.etQnt?.setText(number.toString())
-           }
+            if (binding?.etQnt?.text?.toString()?.trim()!!.toInt()!! <= 1) {
+                binding?.etQnt?.error = "First Choose the Item "
+            } else {
+                number -= 1
+                binding?.etQnt?.setText(number.toString())
+            }
+        }
+        binding?.btnOrder?.setOnClickListener {
+            if (binding?.etQnt?.text?.toString().isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "enter quantity", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "order placed sucsessfuly", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 

@@ -5,26 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ItemFragment">
 
-  <Spinner
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/item2"
-      android:entries="@array/food_item"
-      android:layout_marginTop="70dp"
-      android:layout_marginStart="130dp"
-      />
-    <Spinner
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/item3"
-        android:entries="@array/food_item"
-        android:layout_marginTop="140dp"
-        android:layout_marginStart="130dp"/>
+        android:layout_height="match_parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnAddress"
-        android:src="@drawable/baseline_add_circle_24"
-        android:layout_marginTop="450dp"
-        android:layout_marginStart="290dp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/baseline_add_circle_24" />
 </RelativeLayout>

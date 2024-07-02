@@ -7,35 +7,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60sp"
+        android:layout_marginStart="20sp"
         android:background="#CAEFCC"
         android:text="@string/ordername"
         android:textSize="50sp"
         android:textStyle="bold|italic" />
 
     <EditText
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:inputType="text"
-        android:id="@+id/etName"
+        android:layout_marginTop="200dp"
         android:hint="@string/ordername"
+        android:inputType="text"
         android:textAlignment="center" />
 
     <EditText
+        android:id="@+id/etCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:inputType="text"
-        android:id="@+id/etCity"
-        android:hint="@string/city"
+        android:layout_marginTop="270dp"
+        android:hint="@string/qnt"
+        android:inputType="number"
         android:textAlignment="center" />
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnclick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
         android:layout_marginStart="160dp"
-        android:id="@+id/btnclick"
-        android:text="@string/add"/>
+        android:layout_marginTop="400dp"
+        android:text="@string/add" />
 
 </RelativeLayout>
