@@ -27,15 +27,13 @@ class BillFragment : Fragment() {
     var binding: FragmentBillBinding? = null
     var mainActivity: MainActivity? = null
     var number = 1
-    private var order = ""
     private lateinit var arrayAdapter: ArrayAdapter<StudentAdapterDataClass>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainActivity = activity as MainActivity
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            mainActivity = activity as MainActivity
-            order = it.getString("order") ?: ""
         }
     }
 
@@ -57,7 +55,7 @@ class BillFragment : Fragment() {
             mainActivity?.studentarray ?: arrayListOf()
         )
         binding?.item1?.adapter = arrayAdapter
-        val selectedItem = binding!!.item1.selectedItem as StudentAdapterDataClass
+        val selectedItem = binding?.item1?.selectedItem as StudentAdapterDataClass
         binding?.item1?.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -77,7 +75,8 @@ class BillFragment : Fragment() {
 
 
         binding?.btnAdd?.setOnClickListener {
-            if (binding?.etQnt?.text?.toString()?.trim()!! >= selectedItem.etQnty.toString()
+            if ((binding?.etQnt?.text?.toString()?.trim()?.toInt()
+                    ?: 0) > selectedItem.etQnty.toString().toInt()
             ) {
                 binding?.etQnt?.error = "First Choose the Item "
             } else {
@@ -86,7 +85,7 @@ class BillFragment : Fragment() {
             }
         }
         binding?.btnSub?.setOnClickListener {
-            if (binding?.etQnt?.text?.toString()?.trim()!!.toInt()!! <= 1) {
+            if ((binding?.etQnt?.text?.toString()?.trim()?.toInt() ?: 0) <= 1) {
                 binding?.etQnt?.error = "First Choose the Item "
             } else {
                 number -= 1
