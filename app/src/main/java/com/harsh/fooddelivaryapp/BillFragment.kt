@@ -98,6 +98,9 @@ class BillFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), "order placed sucsessfuly", Toast.LENGTH_LONG)
                     .show()
+                binding?.etQnt?.setText("")
+              //  binding?.item1?.setSelection(0)
+               // binding?.item1?.adapter?.isEmpty
             }
         }
     }
