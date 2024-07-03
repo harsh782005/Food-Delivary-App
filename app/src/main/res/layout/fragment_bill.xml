@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50sp"
+        android:layout_marginStart="90sp"
         android:background="#B6E1B8"
         android:text="@string/selectitem"
         android:textSize="40sp"
@@ -26,10 +26,10 @@
     <TextView
         android:id="@+id/etQnt"
         android:layout_width="100dp"
-        android:hint="@string/qnt"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
         android:layout_marginTop="140dp"
+        android:hint="@string/qnt"
         android:textAlignment="center" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -44,15 +44,15 @@
         android:id="@+id/item1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="250dp" />
+        android:layout_marginTop="250dp"
+        android:background="#E6C4C4" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="350dp"
         android:text="@string/order"
         android:textStyle="bold|italic" />

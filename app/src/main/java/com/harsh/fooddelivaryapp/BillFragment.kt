@@ -26,8 +26,9 @@ class BillFragment : Fragment() {
     private var param2: String? = null
     var binding: FragmentBillBinding? = null
     var mainActivity: MainActivity? = null
-    var number = 1
+    var number = 0
     private lateinit var arrayAdapter: ArrayAdapter<StudentAdapterDataClass>
+    var selectedItem = StudentAdapterDataClass()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivity = activity as MainActivity
@@ -55,7 +56,6 @@ class BillFragment : Fragment() {
             mainActivity?.studentarray ?: arrayListOf()
         )
         binding?.item1?.adapter = arrayAdapter
-        val selectedItem = binding?.item1?.selectedItem as StudentAdapterDataClass
         binding?.item1?.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -64,7 +64,7 @@ class BillFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                    var selectedItem = binding?.item1?.selectedItem as StudentAdapterDataClass
+                     selectedItem = binding?.item1?.selectedItem as StudentAdapterDataClass
                     binding?.etQnt?.setText(selectedItem.etQnty.toString())
                 }
 
@@ -75,7 +75,7 @@ class BillFragment : Fragment() {
 
 
         binding?.btnAdd?.setOnClickListener {
-            if ((binding?.etQnt?.text?.toString()?.trim()?.toInt()
+            if ((binding?.etQnt?.text?.toString()?.trim()?.toIntOrNull()
                     ?: 0) > selectedItem.etQnty.toString().toInt()
             ) {
                 binding?.etQnt?.error = "First Choose the Item "
@@ -85,7 +85,7 @@ class BillFragment : Fragment() {
             }
         }
         binding?.btnSub?.setOnClickListener {
-            if ((binding?.etQnt?.text?.toString()?.trim()?.toInt() ?: 0) <= 1) {
+            if ((binding?.etQnt?.text?.toString()?.trim()?.toIntOrNull() ?: 0) <= 1) {
                 binding?.etQnt?.error = "First Choose the Item "
             } else {
                 number -= 1
