@@ -26,7 +26,7 @@ class BillFragment : Fragment() {
     private var param2: String? = null
     var binding: FragmentBillBinding? = null
     var mainActivity: MainActivity? = null
-    var number = 0
+
     private lateinit var arrayAdapter: ArrayAdapter<StudentAdapterDataClass>
     var selectedItem = StudentAdapterDataClass()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +80,7 @@ class BillFragment : Fragment() {
             ) {
                 binding?.etQnt?.error = "First Choose the Item "
             } else {
+                var number = binding?.etQnt?.text.toString().toInt()
                 number += 1
                 binding?.etQnt?.setText(number.toString())
             }
@@ -88,6 +89,7 @@ class BillFragment : Fragment() {
             if ((binding?.etQnt?.text?.toString()?.trim()?.toIntOrNull() ?: 0) <= 1) {
                 binding?.etQnt?.error = "First Choose the Item "
             } else {
+                var number = binding?.etQnt?.text.toString().toInt()
                 number -= 1
                 binding?.etQnt?.setText(number.toString())
             }
